@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/styles.css" type="text/css">
+	<link rel="icon" type="image/png" href="img/favicon.png">
+
+	<script src="https://kit.fontawesome.com/d7b550f790.js" crossorigin="anonymous" defer></script>
+
+	<title>Website Working Prototype</title>
+
+</head>
+
+
+<body id="front-page">
+	<!--skip link is for accessibility to skip tabbing through the navigation-->
+	<a href="#main-content" class="skip-link">Skip to main content</a>
+
+	<!--HEADER AND NAVIGATION AREA-->
+	<header>
+			<nav aria-label="Main navigation">
+				<a href="index.html">
+					<div class="nav-logo">
+						LOGO PLACEHOLDER
+					</div>
+				</a>
+				<ul class="nav-menu">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html#mission">Mission</a></li>
+					<li><a href="index.html#contact-us">Contact</a></li>
+					<li><a href="team.html">Our Team</a></li>
+				</ul>
+
+				<button class="ham-menu-icon"
+						type="button"
+						aria-label="Open Navigation Menu"
+						area-expanded="false"
+						aria-controls="nav-menu">
+
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+
+				</button>
+			</nav>
+	</header>
+
+	<!--MAIN CONTENT(Skip Link Navigates Here)-->
+	<main id="main-content">
+
+		<!--HERO SECTION: Greeting with Splash Image Background -->
+		<section id="hero">
+			<div class="container">
+				<h1>Website Prototype</h1>
+				<p>Working prototype for testing visuals and functionality.</p>
+			</div>
+		</section>
+
+
+		<!--MISSION SECTION-->
+		<section id="mission">
+			<div class="container">
+				<div class="container">
+					<h2>Section Header</h2>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, deleniti quas quidem dolor quisquam, expedita iste aspernatur totam voluptas vitae magnam. Soluta placeat nam quibusdam. Eum voluptates repudiandae eligendi.</p>
+					<h3>Section Sub-Header</h3>
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque aliquam labore cumque, tempore minima iusto aperiam, mollitia eveniet cupiditate ullam pariatur dolorem officiis perspiciatis porro ea voluptatibus distinctio ut inventore voluptatum fuga laborum amet facilis dolor.</p>
+				</div>
+				<figure>
+					<img src="/img/mission-image.jpg" alt="Building interior with wooden details.">
+				</figure>
+			</div>
+
+		</section>
+
+		<!--CONTACT SECTION-->
+		<section id="contact-us">
+			<h2>Contact Section</h2>
+			<div class="container">
+				<div class="container card">
+					<figure class="emp-photo">
+						<img src="/img/portraits/john-portrait.jpg" alt="Employee photo for John.">
+					</figure>
+
+					<div class="emp-info">
+						<h3>John Aspen</h3>
+						<p>Employee Title</p>
+					</div>
+
+					<ul class="emp-contact">
+							<li><a href=""><i class="fa-solid fa-envelope card-icon"></i>email@email.com</a></li>
+							<li><a href=""><i class="fa-solid fa-phone card-icon"></i>(123) 456-7890</a></li>
+							<li><a href=""><i class="fa-solid fa-user card-icon"></i> LinkedIn</a></li>
+						</ul>
+
+					<div class="emp-bio">
+						<p>Bio goes here.</p>
+
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit libero alias pariatur nulla autem consectetur quis ullam omnis eveniet, iste neque molestiae, sapiente deserunt.</p>
+
+						<div class="emp-bio-readmore">
+							<a href="/team.html#john" >Full Bio</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="container card">
+					<figure class="emp-photo">
+						<img src="/img/portraits/jane-portrait.jpg" alt="Employee photo for Jane.">
+					</figure>
+
+					<div class="emp-info">
+						<h3>Jane Cedar</h3>
+						<p>Employee Title</p>
+					</div>
+
+					<ul class="emp-contact">
+							<li><a href=""><i class="fa-solid fa-envelope card-icon"></i>email@email.com</a></li>
+							<li><a href=""><i class="fa-solid fa-phone card-icon"></i>(123) 456-7890</a></li>
+							<li><a href=""><i class="fa-solid fa-user card-icon"></i> LinkedIn</a></li>
+						</ul>
+
+					<div class="emp-bio">
+						<p>Bio goes here.</p>
+
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit libero alias pariatur nulla autem consectetur quis ullam omnis eveniet, iste neque molestiae, sapiente deserunt.</p>
+
+						<div class="emp-bio-readmore">
+							<a href="/team.html#jane" >Full Bio</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+
+	</main>	
+
+	<!--FOOTER-->
+	<footer>
+
+		<p>Copyright Info & Additional Footer Content Goes Here</p>
+
+	</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

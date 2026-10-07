@@ -1,0 +1,491 @@
+@charset "utf-8";
+/* BOX & MARGIN RESET */
+*{
+	box-sizing:border-box;
+	margin:0;
+	padding:0;
+
+}
+:root{
+    /*VARIALE SETUP*/
+    --header-height: clamp(4rem, 8dvh, 6rem);
+            /*Fallback*/
+              --header-height: clamp(4rem, 8vh, 6rem);
+
+
+    /*COLORS*/
+    --color-lite:rgb(250, 250, 250);
+    --color-dark:rgba(64, 64, 64);
+    --color-dark-tint:rgba(0,0,0, .6);
+    --color-accent:rgb(23, 65, 23);
+    --color-tint:rgba(74, 107, 43, 0.1);
+    --color-pop:rgb(110, 139, 29);
+    --color-shadow:rgba(34, 34, 34, .4);
+    --color-card:rgba(255, 255, 255, 0.9);
+
+    /*MAX WIDTH (hard cap to avoid issues on large screens)*/
+    --max-width:1800px;
+
+    /*How rounded you want the boxes*/
+    --radius:8px;
+
+    /*Card shadow*/
+    --box-shadow:0px 5px 5px var(--color-shadow);
+
+    /*SPACING*/
+    --spacing-md:1rem;
+    --spacing-sm:.5rem;
+    --spacing-lg:1.2rem;
+    --spacing-xl:3rem;
+
+    /*FONT SIZE*/
+    --font-sm:.9rem;
+    --font-lg:1.5rem;
+}
+
+
+/* SKIP LINK - Move it way off screen unless it's focused on */
+  a.skip-link {
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+    overflow: hidden;
+  }
+        a.skip-link:focus {
+          position: static;
+          top: 0;
+          left: 0;
+          display: block;
+          padding: var(--spacing-md);
+          z-index: 2000; /* Ensure it stays above header elements */
+        }
+
+
+/* GENERAL STYLING */
+  html {
+    font-family:Poppins, Tahoma, "sans-serif";
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height); /*Keep the header out of the way when clicking anchor links*/
+    height: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    height: 100%;
+      
+  }
+
+    body img{ /*Wrangling images*/
+      max-width:100%; /*Fill the width of the image's container*/
+      height:auto; /*Height is dependent on the width*/
+      object-fit:cover; /*Slight cropping to maintain aspect ratio while filling space*/
+      display:block;
+    }
+
+  figure{ /*Figure will act as a container for images*/
+    border-radius:var(--radius);
+    overflow:hidden; /*Image corners will not show around the figure*/
+    margin:var(--spacing-md);
+    box-shadow: var(--box-shadow);
+  }
+    figure img{
+      object-fit:cover;
+      height:100%;
+    }
+
+
+  ul{
+    list-style: none; /*Removing bullet points from the UL*/
+    display:flex;
+    gap:var(--spacing-md); /*Spacing between items*/
+  }
+
+  a:hover{
+    transition: .3s;
+  }
+
+
+  h1, h2, h3, h4, h5,h6{
+    margin-bottom:var(--spacing-sm);
+  }
+
+  p{
+    margin-bottom:var(--spacing-lg);
+    line-height: 1.4;
+  }
+
+/*HEADER*/
+  header{
+    top:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    height:var(--header-height); /*Using a variable for consistency*/
+    padding: 0 var(--spacing-sm);
+    background-color: var(--color-accent);
+    color:var(--color-lite);
+    box-shadow: var(--box-shadow);
+    position:fixed; /*Fixed header stays at the top of the screen to allow for quick navigation*/
+  }
+
+  main{
+    margin-top:var(--header-height);
+  }
+
+
+/*NAVIGATION*/
+  nav{
+    width:100%; /* Take up all the available space*/
+    max-width:var(--max-width); /*Cap size for large screens*/
+    height:100%; /*Fill container height*/
+    display:flex;
+    justify-content:space-between; /*Use Flex to force logo to one side and nav to the other side*/
+    align-items:center; /*Center align items vertically*/
+  }
+
+    nav a{
+      font-weight:bold;
+      color:var(--color-lite);
+      text-decoration:none;
+    }
+
+    nav ul{
+      height:100%; /*Fill container height*/
+      align-items:center; /*Center-align items vertically*/
+      justify-content:flex-end; /*Push links to the right*/
+    }
+
+      nav ul li{
+        align-content:center; /*Center-align content vertically*/
+      }
+        nav ul li a{
+          width:100%;/*Fill container width*/
+          height:100%; /*Fill container height*/
+          padding: var(--spacing-sm) var(--spacing-md);
+          border-radius: var(--radius);
+        }
+          nav ul li a:hover{
+            background-color:var(--color-pop);
+            transition:.3s;
+          }
+
+  .ham-menu-icon {
+    display: none; /*Hidden on desktop*/
+  }
+
+  .ham-menu-icon .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-lite);
+  }
+
+/*MEDIA QUERY FOR THE NAVIGATION -> SWAP TO HAMBURGER MENU*/
+@media (max-width: 800px) {
+
+  .ham-menu-icon {
+    border:0;
+    background: transparent;
+    position: relative;
+    display: flex;
+    /*Using explicit sizing so click animations doesn't get clipped*/
+    width: 30px;
+    height: 30px;
+    cursor: pointer; /*Signify clickable*/
+    z-index: 1001;
+  }
+
+  .ham-menu-icon:focus-visible {
+    outline: 2px solid var(--color-bright);
+    outline-offset: 4px;
+}
+
+  .ham-menu-icon .bar {
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background-color: var(--color-lite);
+    transition: transform 0.3s ease, opacity 0.3s ease; /*Allow smooth transition from bars to X, allows icon to open and close*/
+  }
+
+  /*Aligning the bars within the icon*/
+  .ham-menu-icon .bar:nth-child(1) {
+    top: 5px;
+  }
+
+  .ham-menu-icon .bar:nth-child(2) {
+    top: 15px;
+  }
+
+  .ham-menu-icon .bar:nth-child(3) {
+    top: 25px;
+  }
+
+  /*Changes bars to X icon when clicked*/
+  .ham-menu-icon.active .bar:nth-child(1) {
+    top: 15px;
+    transform: rotate(45deg);
+  }
+
+  .ham-menu-icon.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .ham-menu-icon.active .bar:nth-child(3) {
+    top: 15px;
+    transform: rotate(-45deg);
+  }
+
+
+  nav ul.nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    /*If browsers can't read DVH it will just use VH, the menu will take up the entire available screen when opened*/
+    height: 100vh;
+    height: 100dvh;
+
+    margin: 0;
+    padding: var(--header-height) 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    background-color: var(--color-accent);
+
+    /*The menu is offscreen at first, opening it drags it into view.*/
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+
+    z-index: 1000;
+  }
+
+  nav ul.nav-menu.active {
+    transform: translateX(0);
+  }
+
+  nav ul.nav-menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul.nav-menu li a {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-md);
+  }
+
+  /*This prevents the body from scrolling while the menu is open */
+    body.menu-open {
+      overflow:hidden;
+}
+}
+
+/*FOOTER*/
+  footer{
+    /* height:var(--footer-height); */
+    background-color: var(--color-dark);
+    color:var(--color-lite);
+    padding:var(--spacing-lg);
+    text-align:center;
+    font-style:italic;
+    font-size:var(--font-sm);
+  }
+
+
+/* SECTIONS */
+  section{
+  width:100%; /* Sections extend full width*/
+  padding: var(--spacing-xl) 0; /*Sections have XL padding top and bottom, none on the sides*/
+  display:flex; /*Sections are all flexboxes for easier positioning*/
+  flex-direction:column; /*Flex top to bottom to flow with scroll behavior*/
+  align-items:center; /* Centers things horizontally in this setup*/
+  justify-content:center;/* Centers things vertically in this setup*/
+  }
+        /*HERO SECTION*/
+        section#hero{
+          background-color: var(--color-dark); /* fallback color */background-image:
+              linear-gradient(to top right,
+              rgba(9, 9, 5, 0.5),
+              rgba(9, 9, 5, 0.6)),
+              url("../img/hero-image.jpg");
+          background-attachment:fixed;
+          background-position: top center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          color:var(--color-lite);
+          height:75vh; /*Hero doesn't take up entire screen, can leave space for other content to encourage scrolling*/
+        }
+
+        /*MISSION SECTION*/
+        section#mission{
+          color:var(--color-dark);
+          background-color: var(--color-tint);
+        }
+
+        /*CONTACT SECTION*/
+        section#contact-us{
+          background-color: var(--color-accent);
+          color:var(--color-lite);
+        }
+
+        section#team{
+          background-color: var(--color-dark);
+          color:var(--color-lite);
+        }
+
+
+
+/*CONTAINER LAYOUT & STYLING*/
+  /*Sections have internal containers to limit content size while allowing background colors to extend the entire window*/
+    section>.container{ 
+      width:100%; /*Takes up whole width*/
+      max-width:var(--max-width); /*Limits layout on large screens*/
+    }
+
+    #hero>.container{
+      display:flex;
+      flex-flow:column nowrap;
+      justify-content:center;
+      align-items: center;
+      border-radius: var(--radius);
+      background-color: var(--color-dark-tint);
+      padding:var(--spacing-lg);
+      box-shadow: var(--box-shadow);
+    }
+
+    /*Mission & Contact Containers swap to 2 column layout after a certain screen size*/
+      @media screen and (min-width:1000px){
+        #front-page #contact-us>.container{
+          display:grid;
+          grid-template-columns:repeat(2,1fr); /*2 even columns*/
+        }
+
+        #mission>.container{
+          display:grid;
+          grid-template-columns:3fr 2fr; /*2 even columns*/
+        }
+      }
+
+  /*Sub-Container Spacing*/
+  .container>.container{ 
+    padding:var(--spacing-md);
+    margin:var(--spacing-md);
+  }
+
+    /*Mission sub-container uses a flex container for written content alongside the image*/
+    #mission>.container>.container{ 
+      display:flex; 
+      flex-flow:column nowrap;
+      justify-content: center;
+      background-color: var(--color-card);
+      border-radius: var(--radius);
+      box-shadow:var(--box-shadow);
+      padding:var(--spacing-xl);
+      height:min-content;
+      align-self:center;
+    }
+
+    /*Contact sub-container acts like an individual business card with grid layout*/
+    #contact-us>.container>.container, #team>.container>.container{
+      display:grid;
+      grid-template-columns: 1fr 3fr;
+    }
+
+/*CONTACT CARD STYLING*/
+  .container.card{
+        background-color: var(--color-lite);
+        color:var(--color-dark);
+        border-radius: var(--radius);
+        box-shadow: var(--box-shadow);
+      }
+
+  /*EMPLOYEE PHOTO*/
+  figure.emp-photo{
+    border-radius: 50%; /*Makes image a circle*/
+    aspect-ratio: 1/1; /*Force aspect ratio*/
+    max-width:150px; /*Force size*/
+    justify-self:center; /*Centers photo in its grid column*/
+  }
+
+  /*CONTACT UL*/
+  ul.emp-contact{
+    width:100%;
+    padding: var(--spacing-sm);
+    flex-wrap:wrap;
+    justify-content:space-around; /*Inherits main flex behavior from UL, space around gives even spacing around each entry*/
+    border-top: 1px solid var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
+    grid-column:1/-1; /*Extends across entire grid*/
+    font-size:var(--font-sm);
+  }
+
+    .emp-contact a{
+      font-weight:bold;
+      text-decoration: none; /*Removed Underline on links*/
+      color:var(--color-accent);
+    }
+
+    .emp-contact a:hover{
+      font-style: italic; /*Interaction Indication for mouse users*/
+      text-decoration: underline;
+    }
+
+  /*EMPLOYEE INFO*/
+  .emp-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center; /*Centers info vertically, level with middle of photo*/
+    line-height: 1; /*Reduce line height between employee name and title*/ 
+    padding:var(--spacing-md);
+  }
+
+    /*Employee name*/
+      .emp-info>h3{
+        color:var(--color-accent);
+        font-size:var(--font-lg);
+      }
+
+    /*Employee Title*/
+      .emp-info>p{
+        font-size: var(--font-sm);
+        font-style: italic;
+      }
+
+  .card-icon{
+    padding-right:var(--spacing-md);
+  }
+
+  /*EMPLOYEE BIO*/
+    .emp-bio{
+      margin:var(--spacing-md) var(--spacing-sm);
+      padding:var(--spacing-lg);
+      grid-column:1/-1; /*Extends across entire grid*/
+      background-color: var(--color-tint);
+      border-radius:var(--radius);
+    }
+
+          /*Force readmore link to the right with flex behavior*/
+          .emp-bio-readmore{
+            display:flex;
+            justify-content: flex-end; 
+          }
+
+                      /*Readmore link is styled to look like a button*/
+                      .emp-bio-readmore>a{
+                        font-size:var(--font-sm);
+                        color:var(--color-accent);
+                        font-weight:bold;
+                      }
+
+                                    /*Hover indication*/
+                                    .emp-bio-readmore>a:hover{
+                                      text-decoration:none;
+                                    }
+        #bio-page .emp-bio{
+          margin: 0 var(--spacing-xl);
+          background-color: transparent;
+        }
